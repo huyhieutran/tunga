@@ -37,11 +37,13 @@ public class FoodFacade implements FoodFacadeLocal, FoodFacadeRemote {
         return em.find(Food.class, id);
     }
 
-    public List<Food> findAll() {
+    @SuppressWarnings("unchecked")
+	public List<Food> findAll() {
         return em.createQuery("select object(o) from Food as o").getResultList();
     }
 
-    public List<Food> findRange(int[] range) {
+    @SuppressWarnings("unchecked")
+	public List<Food> findRange(int[] range) {
         Query q = em.createQuery("select object(o) from Food as o");
         q.setMaxResults(range[1] - range[0]);
         q.setFirstResult(range[0]);
